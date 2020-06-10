@@ -34,6 +34,9 @@ namespace KalkulatorKalorii {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Panel^ panelMenu;
+	protected:
+	private: System::Windows::Forms::Button^ button1;
 
 	private:
 		/// <summary>
@@ -49,16 +52,42 @@ namespace KalkulatorKalorii {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+			this->panelMenu = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->panelMenu->SuspendLayout();
 			this->SuspendLayout();
+			// 
+			// panelMenu
+			// 
+			this->panelMenu->BackColor = System::Drawing::Color::White;
+			this->panelMenu->Controls->Add(this->button1);
+			this->panelMenu->Dock = System::Windows::Forms::DockStyle::Left;
+			this->panelMenu->Location = System::Drawing::Point(0, 0);
+			this->panelMenu->Name = L"panelMenu";
+			this->panelMenu->Size = System::Drawing::Size(245, 550);
+			this->panelMenu->TabIndex = 0;
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Bauhaus 93", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(-14, 113);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(259, 55);
+			this->button1->TabIndex = 0;
+			this->button1->Text = L"Kalkulator BMR";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(1057, 550);
+			this->Controls->Add(this->panelMenu);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MyForm";
 			this->Text = L"Kalkulator Kalorii";
+			this->panelMenu->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
