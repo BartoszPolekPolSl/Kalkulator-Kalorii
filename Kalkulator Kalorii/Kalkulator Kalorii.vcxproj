@@ -127,6 +127,12 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="formBMR.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="formKCAL.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -135,6 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="formBMR.cpp" />
+    <ClCompile Include="formKCAL.cpp" />
     <ClCompile Include="Kalkulator Kalorii.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="pch.cpp">
@@ -155,6 +163,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formBMR.resx">
+      <DependentUpon>formBMR.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formKCAL.resx">
+      <DependentUpon>formKCAL.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
