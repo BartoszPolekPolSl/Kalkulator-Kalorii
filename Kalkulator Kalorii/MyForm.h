@@ -1,6 +1,7 @@
 #pragma once
 #include"formBMR.h"
 #include"formKCAL.h"
+#include"formBMI.h"
 namespace KalkulatorKalorii {
 
 	using namespace System;
@@ -99,7 +100,9 @@ namespace KalkulatorKalorii {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(245, 55);
 			this->button3->TabIndex = 2;
+			this->button3->Text = L"Kalkulator BMI";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// button2
 			// 
@@ -178,6 +181,9 @@ namespace KalkulatorKalorii {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	openForm(gcnew formKCAL());
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	openForm(gcnew formBMI());
 }
 };
 }
