@@ -164,7 +164,7 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxAge->Size = System::Drawing::Size(60, 19);
 			this->maskedTextBoxAge->TabIndex = 6;
 			this->maskedTextBoxAge->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &formBMR::maskedTextBox1_MaskInputRejected);
-			this->maskedTextBoxAge->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_TextChanged);
+			this->maskedTextBoxAge->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_Validated);
 			// 
 			// maskedTextBoxWeight
 			// 
@@ -179,7 +179,7 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxWeight->Name = L"maskedTextBoxWeight";
 			this->maskedTextBoxWeight->Size = System::Drawing::Size(60, 19);
 			this->maskedTextBoxWeight->TabIndex = 7;
-			this->maskedTextBoxWeight->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxWeight_TextChanged);
+			this->maskedTextBoxWeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxWeight_Validated);
 			// 
 			// maskedTextBoxHeight
 			// 
@@ -193,7 +193,7 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxHeight->Name = L"maskedTextBoxHeight";
 			this->maskedTextBoxHeight->Size = System::Drawing::Size(60, 19);
 			this->maskedTextBoxHeight->TabIndex = 8;
-			this->maskedTextBoxHeight->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxHeight_TextChanged);
+			this->maskedTextBoxHeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxHeight_Validated);
 			// 
 			// comboBoxPA
 			// 
@@ -365,15 +365,13 @@ private: System::Void maskedTextBox1_MaskInputRejected(System::Object^ sender, S
 
 
 private: double  height, physicalACT,sex, weight, age, plan;
-
-
-private: System::Void maskedTextBoxAge_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void maskedTextBoxAge_Validated(System::Object^ sender, System::EventArgs^ e) {
 	age = System::Convert::ToDouble(maskedTextBoxAge->Text);
 }
-private: System::Void maskedTextBoxWeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void maskedTextBoxWeight_Validated(System::Object^ sender, System::EventArgs^ e) {
 	weight = System::Convert::ToDouble(maskedTextBoxWeight->Text);
 }
-private: System::Void maskedTextBoxHeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void maskedTextBoxHeight_Validated(System::Object^ sender, System::EventArgs^ e) {
 	height = System::Convert::ToDouble(maskedTextBoxHeight->Text);
 }
 
@@ -431,6 +429,9 @@ double calcBMR()
 private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
 	textBoxResult->Text = System::Convert::ToString(calcBMR());
 }
+
+
+
 
 
 };
