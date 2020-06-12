@@ -66,6 +66,8 @@ namespace KalkulatorKalorii {
 
 
 
+
+
 	private: System::ComponentModel::IContainer^ components;
 	protected:
 
@@ -163,7 +165,6 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxAge->Name = L"maskedTextBoxAge";
 			this->maskedTextBoxAge->Size = System::Drawing::Size(60, 19);
 			this->maskedTextBoxAge->TabIndex = 6;
-			this->maskedTextBoxAge->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &formBMR::maskedTextBox1_MaskInputRejected);
 			this->maskedTextBoxAge->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_Validated);
 			// 
 			// maskedTextBoxWeight
@@ -287,7 +288,7 @@ namespace KalkulatorKalorii {
 			this->buttonResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->buttonResult->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonResult->Location = System::Drawing::Point(67, 538);
+			this->buttonResult->Location = System::Drawing::Point(79, 536);
 			this->buttonResult->Name = L"buttonResult";
 			this->buttonResult->Size = System::Drawing::Size(145, 47);
 			this->buttonResult->TabIndex = 15;
@@ -320,7 +321,7 @@ namespace KalkulatorKalorii {
 			this->listBoxSex->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Mê¿czyzna", L"Kobieta" });
 			this->listBoxSex->Location = System::Drawing::Point(96, 127);
 			this->listBoxSex->Name = L"listBoxSex";
-			this->listBoxSex->Size = System::Drawing::Size(166, 60);
+			this->listBoxSex->Size = System::Drawing::Size(81, 60);
 			this->listBoxSex->TabIndex = 17;
 			this->listBoxSex->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBoxSex_SelectedIndexChanged);
 			// 
@@ -357,10 +358,6 @@ namespace KalkulatorKalorii {
 #pragma endregion
 
 
-private: System::Void maskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
-	toolTip1->ToolTipTitle = "Nieprawid³owe dane!";
-	toolTip1->Show("We're sorry, but only digits (0-9) are allowed in dates.", maskedTextBoxAge, maskedTextBoxAge->Location, 5000);
-}
 
 
 
@@ -429,6 +426,8 @@ double calcBMR()
 private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
 	textBoxResult->Text = System::Convert::ToString(calcBMR());
 }
+
+
 
 
 
