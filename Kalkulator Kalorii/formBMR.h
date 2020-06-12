@@ -1,4 +1,7 @@
 #pragma once
+
+#include "formBMR.cpp"
+
 namespace KalkulatorKalorii {
 
 	using namespace System;
@@ -7,7 +10,7 @@ namespace KalkulatorKalorii {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace std;
 	/// <summary>
 	/// Podsumowanie informacji o formBMR
 	/// </summary>
@@ -35,20 +38,31 @@ namespace KalkulatorKalorii {
 		}
 	private: System::Windows::Forms::Label^ label1;
 
-	private: System::Windows::Forms::ListBox^ listBox1;
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox1;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox2;
+	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxAge;
+	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxWeight;
+
+
 	private: System::Windows::Forms::ToolTip^ toolTip1;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBox3;
-	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxHeight;
+	private: System::Windows::Forms::ComboBox^ comboBoxPA;
+
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::ListBox^ listBox2;
+	private: System::Windows::Forms::ListBox^ listBoxPlan;
+
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ result;
+	private: System::Windows::Forms::Button^ buttonResult;
+	private: System::Windows::Forms::TextBox^ textBoxResult;
+	private: System::Windows::Forms::ListBox^ listBoxSex;
+
+
+
 
 
 
@@ -70,20 +84,22 @@ namespace KalkulatorKalorii {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->maskedTextBox1 = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->maskedTextBox2 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->maskedTextBoxAge = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->maskedTextBoxWeight = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
-			this->maskedTextBox3 = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->maskedTextBoxHeight = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->comboBoxPA = (gcnew System::Windows::Forms::ComboBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->listBox2 = (gcnew System::Windows::Forms::ListBox());
+			this->listBoxPlan = (gcnew System::Windows::Forms::ListBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->result = (gcnew System::Windows::Forms::Label());
+			this->buttonResult = (gcnew System::Windows::Forms::Button());
+			this->textBoxResult = (gcnew System::Windows::Forms::TextBox());
+			this->listBoxSex = (gcnew System::Windows::Forms::ListBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -97,20 +113,6 @@ namespace KalkulatorKalorii {
 			this->label1->Size = System::Drawing::Size(84, 37);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"P³eæ";
-			// 
-			// listBox1
-			// 
-			this->listBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
-			this->listBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->listBox1->ForeColor = System::Drawing::SystemColors::Info;
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Mê¿czyzna", L"Kobieta" });
-			this->listBox1->Location = System::Drawing::Point(96, 125);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(135, 52);
-			this->listBox1->TabIndex = 2;
-			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBox1_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -148,63 +150,68 @@ namespace KalkulatorKalorii {
 			this->label4->TabIndex = 5;
 			this->label4->Text = L"Wzrost";
 			// 
-			// maskedTextBox1
+			// maskedTextBoxAge
 			// 
-			this->maskedTextBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBox1->BeepOnError = true;
-			this->maskedTextBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->maskedTextBoxAge->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
+				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->maskedTextBoxAge->BeepOnError = true;
+			this->maskedTextBoxAge->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->maskedTextBoxAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->maskedTextBox1->Location = System::Drawing::Point(96, 255);
-			this->maskedTextBox1->Mask = L"00";
-			this->maskedTextBox1->Name = L"maskedTextBox1";
-			this->maskedTextBox1->Size = System::Drawing::Size(60, 19);
-			this->maskedTextBox1->TabIndex = 6;
-			this->maskedTextBox1->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &formBMR::maskedTextBox1_MaskInputRejected);
+			this->maskedTextBoxAge->Location = System::Drawing::Point(96, 255);
+			this->maskedTextBoxAge->Mask = L"00";
+			this->maskedTextBoxAge->Name = L"maskedTextBoxAge";
+			this->maskedTextBoxAge->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxAge->TabIndex = 6;
+			this->maskedTextBoxAge->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &formBMR::maskedTextBox1_MaskInputRejected);
+			this->maskedTextBoxAge->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_TextChanged);
 			// 
-			// maskedTextBox2
+			// maskedTextBoxWeight
 			// 
-			this->maskedTextBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBox2->BeepOnError = true;
-			this->maskedTextBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->maskedTextBox2->Location = System::Drawing::Point(362, 125);
-			this->maskedTextBox2->Mask = L"00";
-			this->maskedTextBox2->Name = L"maskedTextBox2";
-			this->maskedTextBox2->Size = System::Drawing::Size(60, 19);
-			this->maskedTextBox2->TabIndex = 7;
+			this->maskedTextBoxWeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
+				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->maskedTextBoxWeight->BeepOnError = true;
+			this->maskedTextBoxWeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->maskedTextBoxWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
+			this->maskedTextBoxWeight->Location = System::Drawing::Point(362, 125);
+			this->maskedTextBoxWeight->Mask = L"00";
+			this->maskedTextBoxWeight->Name = L"maskedTextBoxWeight";
+			this->maskedTextBoxWeight->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxWeight->TabIndex = 7;
+			this->maskedTextBoxWeight->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxWeight_TextChanged);
 			// 
-			// maskedTextBox3
+			// maskedTextBoxHeight
 			// 
-			this->maskedTextBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBox3->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->maskedTextBox3->Location = System::Drawing::Point(362, 255);
-			this->maskedTextBox3->Mask = L"000.0";
-			this->maskedTextBox3->Name = L"maskedTextBox3";
-			this->maskedTextBox3->Size = System::Drawing::Size(60, 19);
-			this->maskedTextBox3->TabIndex = 8;
+			this->maskedTextBoxHeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
+				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->maskedTextBoxHeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->maskedTextBoxHeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
+			this->maskedTextBoxHeight->Location = System::Drawing::Point(362, 255);
+			this->maskedTextBoxHeight->Mask = L"000.0";
+			this->maskedTextBoxHeight->Name = L"maskedTextBoxHeight";
+			this->maskedTextBoxHeight->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxHeight->TabIndex = 8;
+			this->maskedTextBoxHeight->TextChanged += gcnew System::EventHandler(this, &formBMR::maskedTextBoxHeight_TextChanged);
 			// 
-			// comboBox1
+			// comboBoxPA
 			// 
-			this->comboBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+			this->comboBoxPA->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
-			this->comboBox1->ForeColor = System::Drawing::SystemColors::Info;
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
+			this->comboBoxPA->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->comboBoxPA->ForeColor = System::Drawing::SystemColors::Info;
+			this->comboBoxPA->FormattingEnabled = true;
+			this->comboBoxPA->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
 				L"Znikoma(brak æwiczeñ, praca siedz¹ca, szko³a)",
 					L"Bardzo ma³a(æwiczenia raz na tydzieñ, praca lekka)", L"Umiarkowana(æwiczenia 2 razy w tygodniu)", L"Du¿a(doœæ ciêzki trening kilka razy w tygodniu)",
 					L"Bardzo du¿a(przynajmniej 4 ciêzkie treningi w tygodniu, praca fizyczna)"
 			});
-			this->comboBox1->Location = System::Drawing::Point(96, 357);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(340, 21);
-			this->comboBox1->TabIndex = 9;
+			this->comboBoxPA->Location = System::Drawing::Point(96, 357);
+			this->comboBoxPA->Name = L"comboBoxPA";
+			this->comboBoxPA->Size = System::Drawing::Size(340, 21);
+			this->comboBoxPA->TabIndex = 9;
+			this->comboBoxPA->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::comboBoxPA_SelectedIndexChanged);
 			// 
 			// label5
 			// 
@@ -224,24 +231,28 @@ namespace KalkulatorKalorii {
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->label6->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label6->Location = System::Drawing::Point(89, 440);
+			this->label6->Location = System::Drawing::Point(89, 418);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(123, 37);
 			this->label6->TabIndex = 11;
 			this->label6->Text = L"Planuje";
 			// 
-			// listBox2
+			// listBoxPlan
 			// 
-			this->listBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+			this->listBoxPlan->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
-			this->listBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->listBox2->ForeColor = System::Drawing::SystemColors::Info;
-			this->listBox2->FormattingEnabled = true;
-			this->listBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Chcê przytyæ", L"Chcê utrzymaæ wagê", L"Chcê schudn¹æ" });
-			this->listBox2->Location = System::Drawing::Point(96, 480);
-			this->listBox2->Name = L"listBox2";
-			this->listBox2->Size = System::Drawing::Size(135, 52);
-			this->listBox2->TabIndex = 12;
+			this->listBoxPlan->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->listBoxPlan->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->listBoxPlan->ForeColor = System::Drawing::SystemColors::Info;
+			this->listBoxPlan->FormattingEnabled = true;
+			this->listBoxPlan->ItemHeight = 20;
+			this->listBoxPlan->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Chcê przytyæ", L"Chcê utrzymaæ wagê", L"Chcê schudn¹æ" });
+			this->listBoxPlan->Location = System::Drawing::Point(96, 458);
+			this->listBoxPlan->Name = L"listBoxPlan";
+			this->listBoxPlan->Size = System::Drawing::Size(166, 60);
+			this->listBoxPlan->TabIndex = 12;
+			this->listBoxPlan->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBoxPlan_SelectedIndexChanged);
 			// 
 			// label7
 			// 
@@ -255,17 +266,63 @@ namespace KalkulatorKalorii {
 			this->label7->TabIndex = 13;
 			this->label7->Text = L"Twój cel";
 			// 
-			// label8
+			// result
 			// 
-			this->label8->AutoSize = true;
-			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 48, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->result->AutoSize = true;
+			this->result->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 48, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->label8->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label8->Location = System::Drawing::Point(641, 159);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(204, 73);
-			this->label8->TabIndex = 14;
-			this->label8->Text = L"label8";
+			this->result->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->result->Location = System::Drawing::Point(641, 159);
+			this->result->Name = L"result";
+			this->result->Size = System::Drawing::Size(0, 73);
+			this->result->TabIndex = 14;
+			// 
+			// buttonResult
+			// 
+			this->buttonResult->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->buttonResult->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)),
+				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->buttonResult->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->buttonResult->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonResult->Location = System::Drawing::Point(67, 538);
+			this->buttonResult->Name = L"buttonResult";
+			this->buttonResult->Size = System::Drawing::Size(145, 47);
+			this->buttonResult->TabIndex = 15;
+			this->buttonResult->Text = L"Oblicz";
+			this->buttonResult->UseVisualStyleBackColor = false;
+			this->buttonResult->Click += gcnew System::EventHandler(this, &formBMR::buttonResult_Click);
+			// 
+			// textBoxResult
+			// 
+			this->textBoxResult->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->textBoxResult->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBoxResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->textBoxResult->Location = System::Drawing::Point(654, 145);
+			this->textBoxResult->Name = L"textBoxResult";
+			this->textBoxResult->Size = System::Drawing::Size(182, 42);
+			this->textBoxResult->TabIndex = 16;
+			// 
+			// listBoxSex
+			// 
+			this->listBoxSex->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
+				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->listBoxSex->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->listBoxSex->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->listBoxSex->ForeColor = System::Drawing::SystemColors::Info;
+			this->listBoxSex->FormattingEnabled = true;
+			this->listBoxSex->ItemHeight = 20;
+			this->listBoxSex->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Mê¿czyzna", L"Kobieta" });
+			this->listBoxSex->Location = System::Drawing::Point(96, 127);
+			this->listBoxSex->Name = L"listBoxSex";
+			this->listBoxSex->Size = System::Drawing::Size(166, 60);
+			this->listBoxSex->TabIndex = 17;
+			this->listBoxSex->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBoxSex_SelectedIndexChanged);
 			// 
 			// formBMR
 			// 
@@ -274,19 +331,21 @@ namespace KalkulatorKalorii {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
 			this->ClientSize = System::Drawing::Size(953, 618);
-			this->Controls->Add(this->label8);
+			this->Controls->Add(this->listBoxSex);
+			this->Controls->Add(this->textBoxResult);
+			this->Controls->Add(this->buttonResult);
+			this->Controls->Add(this->result);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->listBox2);
+			this->Controls->Add(this->listBoxPlan);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->maskedTextBox3);
-			this->Controls->Add(this->maskedTextBox2);
-			this->Controls->Add(this->maskedTextBox1);
+			this->Controls->Add(this->comboBoxPA);
+			this->Controls->Add(this->maskedTextBoxHeight);
+			this->Controls->Add(this->maskedTextBoxWeight);
+			this->Controls->Add(this->maskedTextBoxAge);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"formBMR";
@@ -300,21 +359,80 @@ namespace KalkulatorKalorii {
 
 private: System::Void maskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
 	toolTip1->ToolTipTitle = "Nieprawid³owe dane!";
-	toolTip1->Show("We're sorry, but only digits (0-9) are allowed in dates.", maskedTextBox1, maskedTextBox1->Location, 5000);
+	toolTip1->Show("We're sorry, but only digits (0-9) are allowed in dates.", maskedTextBoxAge, maskedTextBoxAge->Location, 5000);
 }
 
 
-	   int sex;
-private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (listBox1->SelectedItem == "Mê¿czyzna")
+
+private: double  height, physicalACT,sex, weight, age, plan;
+
+
+private: System::Void maskedTextBoxAge_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	age = System::Convert::ToDouble(maskedTextBoxAge->Text);
+}
+private: System::Void maskedTextBoxWeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	weight = System::Convert::ToDouble(maskedTextBoxWeight->Text);
+}
+private: System::Void maskedTextBoxHeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	height = System::Convert::ToDouble(maskedTextBoxHeight->Text);
+}
+
+private: System::Void comboBoxPA_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (comboBoxPA->SelectedIndex == 0)
+	{
+		physicalACT = 1.2;
+	}
+	else if (comboBoxPA->SelectedIndex == 1)
+	{
+		physicalACT = 1.4;
+	}
+	else if (comboBoxPA->SelectedIndex == 2)
+	{
+		physicalACT = 1.6;
+	}
+	else if (comboBoxPA->SelectedIndex == 3)
+	{
+		physicalACT = 1.8;
+	}
+	else if (comboBoxPA->SelectedIndex == 4)
+	{
+		physicalACT = 2;
+	}
+}
+
+private: System::Void listBoxPlan_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (listBoxPlan->SelectedIndex == 0)
+	{
+		plan = 300;
+	}
+	else if (listBoxPlan->SelectedIndex == 1)
+	{
+		plan = 0;
+	}
+	else if (listBoxPlan->SelectedIndex == 2)
+	{
+		plan = -300;
+	}
+}
+private: System::Void listBoxSex_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (listBoxSex->SelectedIndex == 0)
 	{
 		sex = 5;
 	}
-	else if (listBox1->SelectedItem == "Kobieta")
+	else if (listBoxSex->SelectedIndex == 1)
 	{
 		sex = -161;
 	}
-
 }
+double calcBMR()
+{
+	return ((9.99 * weight) + (6.25 * height) - (4.92 * age) + sex)* physicalACT+plan;
+}
+private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
+	textBoxResult->Text = System::Convert::ToString(calcBMR());
+}
+
+
 };
+
 }
