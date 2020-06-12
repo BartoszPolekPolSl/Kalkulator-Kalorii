@@ -168,6 +168,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formBMI.resx">
+      <DependentUpon>formBMI.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formBMR.resx">
       <DependentUpon>formBMR.h</DependentUpon>
     </EmbeddedResource>
