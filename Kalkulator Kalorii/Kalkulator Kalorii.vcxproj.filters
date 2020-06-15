@@ -32,10 +32,13 @@
     <ClInclude Include="formBMR.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="formKCAL.h">
+    <ClInclude Include="formBMI.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="formBMI.h">
+    <ClInclude Include="formKCAL1.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="formKCAL.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
@@ -55,10 +58,10 @@
     <ClCompile Include="formBMR.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="formKCAL.cpp">
+    <ClCompile Include="formBMI.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="formBMI.cpp">
+    <ClCompile Include="formKCAL.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

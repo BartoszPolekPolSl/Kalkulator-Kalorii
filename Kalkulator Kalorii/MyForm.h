@@ -172,6 +172,8 @@ namespace KalkulatorKalorii {
 			 form->TopLevel = false;
 			 form->Dock = DockStyle::Fill;
 		     panel1->Controls->Add(form);
+			 panel1->Tag = form;
+			 form->BringToFront();
 			 form->Show();
 
 		 };

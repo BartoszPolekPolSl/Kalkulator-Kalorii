@@ -58,8 +58,10 @@ namespace KalkulatorKalorii {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ result;
 	private: System::Windows::Forms::Button^ buttonResult;
-	private: System::Windows::Forms::TextBox^ textBoxResult;
+
 	private: System::Windows::Forms::ListBox^ listBoxSex;
+	private: System::Windows::Forms::Button^ buttonTarget;
+	private: System::Windows::Forms::Label^ labelResult;
 
 
 
@@ -100,8 +102,9 @@ namespace KalkulatorKalorii {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->result = (gcnew System::Windows::Forms::Label());
 			this->buttonResult = (gcnew System::Windows::Forms::Button());
-			this->textBoxResult = (gcnew System::Windows::Forms::TextBox());
 			this->listBoxSex = (gcnew System::Windows::Forms::ListBox());
+			this->buttonTarget = (gcnew System::Windows::Forms::Button());
+			this->labelResult = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -163,7 +166,7 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxAge->Location = System::Drawing::Point(96, 255);
 			this->maskedTextBoxAge->Mask = L"00";
 			this->maskedTextBoxAge->Name = L"maskedTextBoxAge";
-			this->maskedTextBoxAge->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxAge->Size = System::Drawing::Size(20, 19);
 			this->maskedTextBoxAge->TabIndex = 6;
 			this->maskedTextBoxAge->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_Validated);
 			// 
@@ -178,7 +181,7 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxWeight->Location = System::Drawing::Point(362, 125);
 			this->maskedTextBoxWeight->Mask = L"00";
 			this->maskedTextBoxWeight->Name = L"maskedTextBoxWeight";
-			this->maskedTextBoxWeight->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxWeight->Size = System::Drawing::Size(21, 19);
 			this->maskedTextBoxWeight->TabIndex = 7;
 			this->maskedTextBoxWeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxWeight_Validated);
 			// 
@@ -192,14 +195,14 @@ namespace KalkulatorKalorii {
 			this->maskedTextBoxHeight->Location = System::Drawing::Point(362, 255);
 			this->maskedTextBoxHeight->Mask = L"000.0";
 			this->maskedTextBoxHeight->Name = L"maskedTextBoxHeight";
-			this->maskedTextBoxHeight->Size = System::Drawing::Size(60, 19);
+			this->maskedTextBoxHeight->Size = System::Drawing::Size(42, 19);
 			this->maskedTextBoxHeight->TabIndex = 8;
 			this->maskedTextBoxHeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxHeight_Validated);
 			// 
 			// comboBoxPA
 			// 
-			this->comboBoxPA->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->comboBoxPA->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->comboBoxPA->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->comboBoxPA->ForeColor = System::Drawing::SystemColors::Info;
 			this->comboBoxPA->FormattingEnabled = true;
@@ -232,7 +235,7 @@ namespace KalkulatorKalorii {
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->label6->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label6->Location = System::Drawing::Point(89, 418);
+			this->label6->Location = System::Drawing::Point(98, 418);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(123, 37);
 			this->label6->TabIndex = 11;
@@ -240,8 +243,8 @@ namespace KalkulatorKalorii {
 			// 
 			// listBoxPlan
 			// 
-			this->listBoxPlan->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->listBoxPlan->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->listBoxPlan->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->listBoxPlan->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
@@ -251,7 +254,7 @@ namespace KalkulatorKalorii {
 			this->listBoxPlan->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Chcê przytyæ", L"Chcê utrzymaæ wagê", L"Chcê schudn¹æ" });
 			this->listBoxPlan->Location = System::Drawing::Point(96, 458);
 			this->listBoxPlan->Name = L"listBoxPlan";
-			this->listBoxPlan->Size = System::Drawing::Size(166, 60);
+			this->listBoxPlan->Size = System::Drawing::Size(153, 60);
 			this->listBoxPlan->TabIndex = 12;
 			this->listBoxPlan->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBoxPlan_SelectedIndexChanged);
 			// 
@@ -280,38 +283,26 @@ namespace KalkulatorKalorii {
 			// 
 			// buttonResult
 			// 
-			this->buttonResult->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->buttonResult->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->buttonResult->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)),
 				static_cast<System::Int32>(static_cast<System::Byte>(9)), static_cast<System::Int32>(static_cast<System::Byte>(232)));
 			this->buttonResult->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->buttonResult->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonResult->Location = System::Drawing::Point(79, 536);
+			this->buttonResult->Location = System::Drawing::Point(96, 538);
 			this->buttonResult->Name = L"buttonResult";
-			this->buttonResult->Size = System::Drawing::Size(145, 47);
+			this->buttonResult->Size = System::Drawing::Size(145, 59);
 			this->buttonResult->TabIndex = 15;
 			this->buttonResult->Text = L"Oblicz";
 			this->buttonResult->UseVisualStyleBackColor = false;
 			this->buttonResult->Click += gcnew System::EventHandler(this, &formBMR::buttonResult_Click);
 			// 
-			// textBoxResult
-			// 
-			this->textBoxResult->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
-			this->textBoxResult->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBoxResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->textBoxResult->Location = System::Drawing::Point(654, 145);
-			this->textBoxResult->Name = L"textBoxResult";
-			this->textBoxResult->Size = System::Drawing::Size(182, 42);
-			this->textBoxResult->TabIndex = 16;
-			// 
 			// listBoxSex
 			// 
-			this->listBoxSex->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
-				static_cast<System::Int32>(static_cast<System::Byte>(232)));
+			this->listBoxSex->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->listBoxSex->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->listBoxSex->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
@@ -321,9 +312,36 @@ namespace KalkulatorKalorii {
 			this->listBoxSex->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Mê¿czyzna", L"Kobieta" });
 			this->listBoxSex->Location = System::Drawing::Point(96, 127);
 			this->listBoxSex->Name = L"listBoxSex";
-			this->listBoxSex->Size = System::Drawing::Size(81, 60);
+			this->listBoxSex->Size = System::Drawing::Size(81, 40);
 			this->listBoxSex->TabIndex = 17;
 			this->listBoxSex->SelectedIndexChanged += gcnew System::EventHandler(this, &formBMR::listBoxSex_SelectedIndexChanged);
+			// 
+			// buttonTarget
+			// 
+			this->buttonTarget->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->buttonTarget->FlatAppearance->BorderSize = 0;
+			this->buttonTarget->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonTarget->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->buttonTarget->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonTarget->Location = System::Drawing::Point(620, 268);
+			this->buttonTarget->Name = L"buttonTarget";
+			this->buttonTarget->Size = System::Drawing::Size(246, 72);
+			this->buttonTarget->TabIndex = 18;
+			this->buttonTarget->Text = L"Dodaj cel";
+			this->buttonTarget->UseVisualStyleBackColor = false;
+			// 
+			// labelResult
+			// 
+			this->labelResult->AutoSize = true;
+			this->labelResult->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelResult->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelResult->Location = System::Drawing::Point(650, 150);
+			this->labelResult->Name = L"labelResult";
+			this->labelResult->Size = System::Drawing::Size(0, 42);
+			this->labelResult->TabIndex = 19;
 			// 
 			// formBMR
 			// 
@@ -332,8 +350,9 @@ namespace KalkulatorKalorii {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
 			this->ClientSize = System::Drawing::Size(953, 618);
+			this->Controls->Add(this->labelResult);
+			this->Controls->Add(this->buttonTarget);
 			this->Controls->Add(this->listBoxSex);
-			this->Controls->Add(this->textBoxResult);
 			this->Controls->Add(this->buttonResult);
 			this->Controls->Add(this->result);
 			this->Controls->Add(this->label7);
@@ -424,8 +443,10 @@ double calcBMR()
 	return ((9.99 * weight) + (6.25 * height) - (4.92 * age) + sex)* physicalACT+plan;
 }
 private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
-	textBoxResult->Text = System::Convert::ToString(calcBMR());
+	labelResult->Text = System::Convert::ToString(calcBMR())+" KCAL";
 }
+
+
 
 
 
