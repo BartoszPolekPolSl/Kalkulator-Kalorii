@@ -24,7 +24,7 @@ namespace KalkulatorKalorii {
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
 		}
-
+		static double KCAL;
 	protected:
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
@@ -42,12 +42,12 @@ namespace KalkulatorKalorii {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxAge;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxWeight;
+
+
 
 
 	private: System::Windows::Forms::ToolTip^ toolTip1;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxHeight;
+
 	private: System::Windows::Forms::ComboBox^ comboBoxPA;
 
 
@@ -62,6 +62,9 @@ namespace KalkulatorKalorii {
 	private: System::Windows::Forms::ListBox^ listBoxSex;
 	private: System::Windows::Forms::Button^ buttonTarget;
 	private: System::Windows::Forms::Label^ labelResult;
+	private: System::Windows::Forms::TextBox^ TextBoxWeight;
+	private: System::Windows::Forms::TextBox^ TextBoxAge;
+	private: System::Windows::Forms::TextBox^ TextBoxHeight;
 
 
 
@@ -91,10 +94,7 @@ namespace KalkulatorKalorii {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->maskedTextBoxAge = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->maskedTextBoxWeight = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
-			this->maskedTextBoxHeight = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->comboBoxPA = (gcnew System::Windows::Forms::ComboBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -105,6 +105,9 @@ namespace KalkulatorKalorii {
 			this->listBoxSex = (gcnew System::Windows::Forms::ListBox());
 			this->buttonTarget = (gcnew System::Windows::Forms::Button());
 			this->labelResult = (gcnew System::Windows::Forms::Label());
+			this->TextBoxWeight = (gcnew System::Windows::Forms::TextBox());
+			this->TextBoxAge = (gcnew System::Windows::Forms::TextBox());
+			this->TextBoxHeight = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -154,50 +157,6 @@ namespace KalkulatorKalorii {
 			this->label4->Size = System::Drawing::Size(118, 37);
 			this->label4->TabIndex = 5;
 			this->label4->Text = L"Wzrost";
-			// 
-			// maskedTextBoxAge
-			// 
-			this->maskedTextBoxAge->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxAge->BeepOnError = true;
-			this->maskedTextBoxAge->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxAge->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->maskedTextBoxAge->Location = System::Drawing::Point(96, 255);
-			this->maskedTextBoxAge->Mask = L"00";
-			this->maskedTextBoxAge->Name = L"maskedTextBoxAge";
-			this->maskedTextBoxAge->Size = System::Drawing::Size(20, 19);
-			this->maskedTextBoxAge->TabIndex = 6;
-			this->maskedTextBoxAge->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxAge_Validated);
-			// 
-			// maskedTextBoxWeight
-			// 
-			this->maskedTextBoxWeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxWeight->BeepOnError = true;
-			this->maskedTextBoxWeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->maskedTextBoxWeight->Location = System::Drawing::Point(362, 125);
-			this->maskedTextBoxWeight->Mask = L"00";
-			this->maskedTextBoxWeight->Name = L"maskedTextBoxWeight";
-			this->maskedTextBoxWeight->Size = System::Drawing::Size(21, 19);
-			this->maskedTextBoxWeight->TabIndex = 7;
-			this->maskedTextBoxWeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxWeight_Validated);
-			// 
-			// maskedTextBoxHeight
-			// 
-			this->maskedTextBoxHeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxHeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxHeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->maskedTextBoxHeight->Location = System::Drawing::Point(362, 255);
-			this->maskedTextBoxHeight->Mask = L"000.0";
-			this->maskedTextBoxHeight->Name = L"maskedTextBoxHeight";
-			this->maskedTextBoxHeight->Size = System::Drawing::Size(42, 19);
-			this->maskedTextBoxHeight->TabIndex = 8;
-			this->maskedTextBoxHeight->Validated += gcnew System::EventHandler(this, &formBMR::maskedTextBoxHeight_Validated);
 			// 
 			// comboBoxPA
 			// 
@@ -331,6 +290,7 @@ namespace KalkulatorKalorii {
 			this->buttonTarget->TabIndex = 18;
 			this->buttonTarget->Text = L"Dodaj cel";
 			this->buttonTarget->UseVisualStyleBackColor = false;
+			this->buttonTarget->Click += gcnew System::EventHandler(this, &formBMR::buttonTarget_Click);
 			// 
 			// labelResult
 			// 
@@ -343,6 +303,30 @@ namespace KalkulatorKalorii {
 			this->labelResult->Size = System::Drawing::Size(0, 42);
 			this->labelResult->TabIndex = 19;
 			// 
+			// TextBoxWeight
+			// 
+			this->TextBoxWeight->Location = System::Drawing::Point(362, 127);
+			this->TextBoxWeight->Name = L"TextBoxWeight";
+			this->TextBoxWeight->Size = System::Drawing::Size(60, 20);
+			this->TextBoxWeight->TabIndex = 20;
+			this->TextBoxWeight->TextChanged += gcnew System::EventHandler(this, &formBMR::TextBoxWeight_TextChanged);
+			// 
+			// TextBoxAge
+			// 
+			this->TextBoxAge->Location = System::Drawing::Point(96, 254);
+			this->TextBoxAge->Name = L"TextBoxAge";
+			this->TextBoxAge->Size = System::Drawing::Size(77, 20);
+			this->TextBoxAge->TabIndex = 21;
+			this->TextBoxAge->TextChanged += gcnew System::EventHandler(this, &formBMR::TextBoxAge_TextChanged);
+			// 
+			// TextBoxHeight
+			// 
+			this->TextBoxHeight->Location = System::Drawing::Point(362, 254);
+			this->TextBoxHeight->Name = L"TextBoxHeight";
+			this->TextBoxHeight->Size = System::Drawing::Size(100, 20);
+			this->TextBoxHeight->TabIndex = 22;
+			this->TextBoxHeight->TextChanged += gcnew System::EventHandler(this, &formBMR::TextBoxHeight_TextChanged);
+			// 
 			// formBMR
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -350,6 +334,9 @@ namespace KalkulatorKalorii {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
 			this->ClientSize = System::Drawing::Size(953, 618);
+			this->Controls->Add(this->TextBoxHeight);
+			this->Controls->Add(this->TextBoxAge);
+			this->Controls->Add(this->TextBoxWeight);
 			this->Controls->Add(this->labelResult);
 			this->Controls->Add(this->buttonTarget);
 			this->Controls->Add(this->listBoxSex);
@@ -360,9 +347,6 @@ namespace KalkulatorKalorii {
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->comboBoxPA);
-			this->Controls->Add(this->maskedTextBoxHeight);
-			this->Controls->Add(this->maskedTextBoxWeight);
-			this->Controls->Add(this->maskedTextBoxAge);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -380,80 +364,97 @@ namespace KalkulatorKalorii {
 
 
 
-private: double  height, physicalACT,sex, weight, age, plan;
-private: System::Void maskedTextBoxAge_Validated(System::Object^ sender, System::EventArgs^ e) {
-	age = System::Convert::ToDouble(maskedTextBoxAge->Text);
-}
-private: System::Void maskedTextBoxWeight_Validated(System::Object^ sender, System::EventArgs^ e) {
-	weight = System::Convert::ToDouble(maskedTextBoxWeight->Text);
-}
-private: System::Void maskedTextBoxHeight_Validated(System::Object^ sender, System::EventArgs^ e) {
-	height = System::Convert::ToDouble(maskedTextBoxHeight->Text);
-}
+	private: double  height, physicalACT, sex, weight, age, plan;
+	private: System::Void TextBoxAge_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
-private: System::Void comboBoxPA_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (comboBoxPA->SelectedIndex == 0)
-	{
-		physicalACT = 1.2;
 	}
-	else if (comboBoxPA->SelectedIndex == 1)
-	{
-		physicalACT = 1.4;
+
+	private: System::Void TextBoxWeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
 	}
-	else if (comboBoxPA->SelectedIndex == 2)
-	{
-		physicalACT = 1.6;
+	private: System::Void TextBoxHeight_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
 	}
-	else if (comboBoxPA->SelectedIndex == 3)
-	{
-		physicalACT = 1.8;
+
+	private: System::Void comboBoxPA_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (comboBoxPA->SelectedIndex == 0)
+		{
+			physicalACT = 1.2;
+		}
+		else if (comboBoxPA->SelectedIndex == 1)
+		{
+			physicalACT = 1.4;
+		}
+		else if (comboBoxPA->SelectedIndex == 2)
+		{
+			physicalACT = 1.6;
+		}
+		else if (comboBoxPA->SelectedIndex == 3)
+		{
+			physicalACT = 1.8;
+		}
+		else if (comboBoxPA->SelectedIndex == 4)
+		{
+			physicalACT = 2;
+		}
 	}
-	else if (comboBoxPA->SelectedIndex == 4)
-	{
-		physicalACT = 2;
+
+	private: System::Void listBoxPlan_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (listBoxPlan->SelectedIndex == 0)
+		{
+			plan = 300;
+		}
+		else if (listBoxPlan->SelectedIndex == 1)
+		{
+			plan = 0;
+		}
+		else if (listBoxPlan->SelectedIndex == 2)
+		{
+			plan = -300;
+		}
 	}
-}
-
-private: System::Void listBoxPlan_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (listBoxPlan->SelectedIndex == 0)
-	{
-		plan = 300;
+	private: System::Void listBoxSex_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+		if (listBoxSex->SelectedIndex == 0)
+		{
+			sex = 5;
+		}
+		else if (listBoxSex->SelectedIndex == 1)
+		{
+			sex = -161;
+		}
 	}
-	else if (listBoxPlan->SelectedIndex == 1)
-	{
-		plan = 0;
+		   double calcBMR()
+		   {
+			   return ((9.99 * weight) + (6.25 * height) - (4.92 * age) + sex) * physicalACT + plan;
+		   }
+	private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
+		age = System::Convert::ToDouble(TextBoxAge->Text);
+		if (age >= 0)
+		{
+		}
+		else
+		{
+			age = 0;
+		}
+		height = System::Convert::ToDouble(TextBoxHeight->Text);
+		weight = System::Convert::ToDouble(TextBoxWeight->Text);
+		labelResult->Text = System::Convert::ToString(calcBMR()) + " KCAL";
 	}
-	else if (listBoxPlan->SelectedIndex == 2)
-	{
-		plan = -300;
+
+
+
+
+
+
+
+
+
+
+
+
+	private: System::Void buttonTarget_Click(System::Object^ sender, System::EventArgs^ e) {
+		KCAL= Convert::ToDouble(calcBMR());
 	}
-}
-private: System::Void listBoxSex_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (listBoxSex->SelectedIndex == 0)
-	{
-		sex = 5;
-	}
-	else if (listBoxSex->SelectedIndex == 1)
-	{
-		sex = -161;
-	}
-}
-double calcBMR()
-{
-	return ((9.99 * weight) + (6.25 * height) - (4.92 * age) + sex)* physicalACT+plan;
-}
-private: System::Void buttonResult_Click(System::Object^ sender, System::EventArgs^ e) {
-	labelResult->Text = System::Convert::ToString(calcBMR())+" KCAL";
-}
-
-
-
-
-
-
-
-
-
 };
 
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "formKCAL.h"
-
+#include "formBMR.h"
 namespace KalkulatorKalorii {
 
 	using namespace System;
@@ -48,14 +48,14 @@ namespace KalkulatorKalorii {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxProtein;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxCarbo;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxFats;
+
+
+
 
 
 
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxproductWeight;
+
 	private: System::Windows::Forms::Button^ buttonAdd;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
@@ -63,36 +63,20 @@ namespace KalkulatorKalorii {
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Button^ buttonDelete;
 	private: System::Windows::Forms::Label^ label11;
-	private: System::Windows::Forms::MaskedTextBox^ maskedTextBoxKcal;
+
+	private: System::Windows::Forms::TextBox^ textBoxProtein;
+	private: System::Windows::Forms::TextBox^ textBoxCarbo;
+	private: System::Windows::Forms::TextBox^ textBoxFats;
+	private: System::Windows::Forms::Label^ labelKcal;
+	private: System::Windows::Forms::TextBox^ textBoxproductWeight;
+	private: System::Windows::Forms::Label^ labelProtein;
+	private: System::Windows::Forms::Label^ labelCarbo;
+	private: System::Windows::Forms::Label^ labelFats;
+	private: System::Windows::Forms::Label^ labelAllKcal;
 
 
 
 
-
-
-
-
-
-	protected:
-
-	protected:
-
-	protected:
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-	protected:
-
-	protected:
 
 
 
@@ -118,11 +102,7 @@ namespace KalkulatorKalorii {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->maskedTextBoxProtein = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->maskedTextBoxCarbo = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->maskedTextBoxFats = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->maskedTextBoxproductWeight = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->buttonAdd = (gcnew System::Windows::Forms::Button());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
@@ -130,15 +110,30 @@ namespace KalkulatorKalorii {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->maskedTextBoxKcal = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->textBoxProtein = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCarbo = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxFats = (gcnew System::Windows::Forms::TextBox());
+			this->labelKcal = (gcnew System::Windows::Forms::Label());
+			this->textBoxproductWeight = (gcnew System::Windows::Forms::TextBox());
+			this->labelProtein = (gcnew System::Windows::Forms::Label());
+			this->labelCarbo = (gcnew System::Windows::Forms::Label());
+			this->labelFats = (gcnew System::Windows::Forms::Label());
+			this->labelAllKcal = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// listBoxProducts
 			// 
+			this->listBoxProducts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->listBoxProducts->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->listBoxProducts->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->listBoxProducts->ForeColor = System::Drawing::SystemColors::Window;
 			this->listBoxProducts->FormattingEnabled = true;
+			this->listBoxProducts->ItemHeight = 20;
 			this->listBoxProducts->Location = System::Drawing::Point(52, 69);
 			this->listBoxProducts->Name = L"listBoxProducts";
-			this->listBoxProducts->Size = System::Drawing::Size(170, 407);
+			this->listBoxProducts->Size = System::Drawing::Size(170, 400);
 			this->listBoxProducts->TabIndex = 0;
 			// 
 			// label1
@@ -157,11 +152,12 @@ namespace KalkulatorKalorii {
 			// 
 			this->textBoxProductName->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
 				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->textBoxProductName->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->textBoxProductName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
 			this->textBoxProductName->Location = System::Drawing::Point(268, 105);
 			this->textBoxProductName->Name = L"textBoxProductName";
-			this->textBoxProductName->Size = System::Drawing::Size(299, 31);
+			this->textBoxProductName->Size = System::Drawing::Size(299, 24);
 			this->textBoxProductName->TabIndex = 2;
 			// 
 			// label2
@@ -206,52 +202,11 @@ namespace KalkulatorKalorii {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->label5->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label5->Location = System::Drawing::Point(563, 193);
+			this->label5->Location = System::Drawing::Point(538, 193);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(98, 25);
 			this->label5->TabIndex = 6;
 			this->label5->Text = L"T³uszcze";
-			// 
-			// maskedTextBoxProtein
-			// 
-			this->maskedTextBoxProtein->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxProtein->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxProtein->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->maskedTextBoxProtein->Location = System::Drawing::Point(268, 221);
-			this->maskedTextBoxProtein->Mask = L"0000";
-			this->maskedTextBoxProtein->Name = L"maskedTextBoxProtein";
-			this->maskedTextBoxProtein->Size = System::Drawing::Size(35, 19);
-			this->maskedTextBoxProtein->TabIndex = 7;
-			// 
-			// maskedTextBoxCarbo
-			// 
-			this->maskedTextBoxCarbo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxCarbo->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxCarbo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->maskedTextBoxCarbo->Location = System::Drawing::Point(386, 221);
-			this->maskedTextBoxCarbo->Mask = L"0000";
-			this->maskedTextBoxCarbo->Name = L"maskedTextBoxCarbo";
-			this->maskedTextBoxCarbo->Size = System::Drawing::Size(35, 19);
-			this->maskedTextBoxCarbo->TabIndex = 8;
-			this->maskedTextBoxCarbo->ValidatingType = System::Int32::typeid;
-			// 
-			// maskedTextBoxFats
-			// 
-			this->maskedTextBoxFats->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxFats->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxFats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->maskedTextBoxFats->Location = System::Drawing::Point(568, 221);
-			this->maskedTextBoxFats->Mask = L"0000";
-			this->maskedTextBoxFats->Name = L"maskedTextBoxFats";
-			this->maskedTextBoxFats->Size = System::Drawing::Size(35, 19);
-			this->maskedTextBoxFats->TabIndex = 9;
-			this->maskedTextBoxFats->ValidatingType = System::Int32::typeid;
 			// 
 			// label6
 			// 
@@ -265,20 +220,6 @@ namespace KalkulatorKalorii {
 			this->label6->TabIndex = 10;
 			this->label6->Text = L"Iloœæ produktu w gramach.";
 			// 
-			// maskedTextBoxproductWeight
-			// 
-			this->maskedTextBoxproductWeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxproductWeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxproductWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->maskedTextBoxproductWeight->Location = System::Drawing::Point(268, 297);
-			this->maskedTextBoxproductWeight->Mask = L"0000";
-			this->maskedTextBoxproductWeight->Name = L"maskedTextBoxproductWeight";
-			this->maskedTextBoxproductWeight->Size = System::Drawing::Size(35, 19);
-			this->maskedTextBoxproductWeight->TabIndex = 11;
-			this->maskedTextBoxproductWeight->ValidatingType = System::Int32::typeid;
-			// 
 			// buttonAdd
 			// 
 			this->buttonAdd->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
@@ -288,7 +229,7 @@ namespace KalkulatorKalorii {
 			this->buttonAdd->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonAdd->Location = System::Drawing::Point(259, 336);
+			this->buttonAdd->Location = System::Drawing::Point(268, 336);
 			this->buttonAdd->Name = L"buttonAdd";
 			this->buttonAdd->Size = System::Drawing::Size(87, 36);
 			this->buttonAdd->TabIndex = 12;
@@ -366,25 +307,118 @@ namespace KalkulatorKalorii {
 			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->label11->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label11->Location = System::Drawing::Point(678, 193);
+			this->label11->Location = System::Drawing::Point(642, 193);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(54, 25);
 			this->label11->TabIndex = 18;
 			this->label11->Text = L"Kcal";
 			// 
-			// maskedTextBoxKcal
+			// textBoxProtein
 			// 
-			this->maskedTextBoxKcal->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
-				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->maskedTextBoxKcal->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->maskedTextBoxKcal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBoxProtein->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->textBoxProtein->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBoxProtein->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->maskedTextBoxKcal->Location = System::Drawing::Point(683, 221);
-			this->maskedTextBoxKcal->Mask = L"0000";
-			this->maskedTextBoxKcal->Name = L"maskedTextBoxKcal";
-			this->maskedTextBoxKcal->Size = System::Drawing::Size(35, 19);
-			this->maskedTextBoxKcal->TabIndex = 19;
-			this->maskedTextBoxKcal->ValidatingType = System::Int32::typeid;
+			this->textBoxProtein->Location = System::Drawing::Point(268, 220);
+			this->textBoxProtein->Name = L"textBoxProtein";
+			this->textBoxProtein->Size = System::Drawing::Size(66, 24);
+			this->textBoxProtein->TabIndex = 20;
+			// 
+			// textBoxCarbo
+			// 
+			this->textBoxCarbo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->textBoxCarbo->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBoxCarbo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->textBoxCarbo->Location = System::Drawing::Point(386, 221);
+			this->textBoxCarbo->Name = L"textBoxCarbo";
+			this->textBoxCarbo->Size = System::Drawing::Size(66, 24);
+			this->textBoxCarbo->TabIndex = 21;
+			// 
+			// textBoxFats
+			// 
+			this->textBoxFats->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)), static_cast<System::Int32>(static_cast<System::Byte>(12)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->textBoxFats->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBoxFats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->textBoxFats->Location = System::Drawing::Point(543, 221);
+			this->textBoxFats->Name = L"textBoxFats";
+			this->textBoxFats->Size = System::Drawing::Size(66, 24);
+			this->textBoxFats->TabIndex = 22;
+			// 
+			// labelKcal
+			// 
+			this->labelKcal->AutoSize = true;
+			this->labelKcal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelKcal->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelKcal->Location = System::Drawing::Point(642, 221);
+			this->labelKcal->Name = L"labelKcal";
+			this->labelKcal->Size = System::Drawing::Size(0, 29);
+			this->labelKcal->TabIndex = 23;
+			// 
+			// textBoxproductWeight
+			// 
+			this->textBoxproductWeight->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(116)),
+				static_cast<System::Int32>(static_cast<System::Byte>(12)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->textBoxproductWeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBoxproductWeight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
+			this->textBoxproductWeight->Location = System::Drawing::Point(268, 297);
+			this->textBoxproductWeight->Name = L"textBoxproductWeight";
+			this->textBoxproductWeight->Size = System::Drawing::Size(66, 24);
+			this->textBoxproductWeight->TabIndex = 24;
+			// 
+			// labelProtein
+			// 
+			this->labelProtein->AutoSize = true;
+			this->labelProtein->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelProtein->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelProtein->Location = System::Drawing::Point(224, 542);
+			this->labelProtein->Name = L"labelProtein";
+			this->labelProtein->Size = System::Drawing::Size(70, 24);
+			this->labelProtein->TabIndex = 25;
+			this->labelProtein->Text = L"label12";
+			// 
+			// labelCarbo
+			// 
+			this->labelCarbo->AutoSize = true;
+			this->labelCarbo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelCarbo->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelCarbo->Location = System::Drawing::Point(353, 542);
+			this->labelCarbo->Name = L"labelCarbo";
+			this->labelCarbo->Size = System::Drawing::Size(70, 24);
+			this->labelCarbo->TabIndex = 26;
+			this->labelCarbo->Text = L"label12";
+			// 
+			// labelFats
+			// 
+			this->labelFats->AutoSize = true;
+			this->labelFats->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelFats->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelFats->Location = System::Drawing::Point(539, 542);
+			this->labelFats->Name = L"labelFats";
+			this->labelFats->Size = System::Drawing::Size(70, 24);
+			this->labelFats->TabIndex = 27;
+			this->labelFats->Text = L"label12";
+			// 
+			// labelAllKcal
+			// 
+			this->labelAllKcal->AutoSize = true;
+			this->labelAllKcal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->labelAllKcal->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->labelAllKcal->Location = System::Drawing::Point(706, 542);
+			this->labelAllKcal->Name = L"labelAllKcal";
+			this->labelAllKcal->Size = System::Drawing::Size(70, 24);
+			this->labelAllKcal->TabIndex = 28;
+			this->labelAllKcal->Text =Convert::ToString( formBMR::KCAL);
 			// 
 			// formKCAL
 			// 
@@ -393,7 +427,15 @@ namespace KalkulatorKalorii {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(89)), static_cast<System::Int32>(static_cast<System::Byte>(9)),
 				static_cast<System::Int32>(static_cast<System::Byte>(232)));
 			this->ClientSize = System::Drawing::Size(895, 629);
-			this->Controls->Add(this->maskedTextBoxKcal);
+			this->Controls->Add(this->labelAllKcal);
+			this->Controls->Add(this->labelFats);
+			this->Controls->Add(this->labelCarbo);
+			this->Controls->Add(this->labelProtein);
+			this->Controls->Add(this->textBoxproductWeight);
+			this->Controls->Add(this->labelKcal);
+			this->Controls->Add(this->textBoxFats);
+			this->Controls->Add(this->textBoxCarbo);
+			this->Controls->Add(this->textBoxProtein);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->label10);
@@ -401,11 +443,7 @@ namespace KalkulatorKalorii {
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->buttonAdd);
-			this->Controls->Add(this->maskedTextBoxproductWeight);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->maskedTextBoxFats);
-			this->Controls->Add(this->maskedTextBoxCarbo);
-			this->Controls->Add(this->maskedTextBoxProtein);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
@@ -427,19 +465,24 @@ namespace KalkulatorKalorii {
 		array< double >^ fats = gcnew array< double >(1024);
 		array< double >^ kcal = gcnew array< double >(1024);
 		array< String^ >^ name = gcnew array< String^ >(1024);
-	
+		
+		
+		double calcKCAL()
+		{
+			return (4 * Convert::ToDouble(textBoxProtein->Text) + 4 * Convert::ToDouble(textBoxCarbo->Text) + 9 * Convert::ToDouble(textBoxFats->Text))* (Convert::ToDouble(textBoxproductWeight->Text)/100);
+		}
 		
 
 private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e) {
-	if((maskedTextBoxProtein->Text!="") || (maskedTextBoxCarbo->Text != "")|| (maskedTextBoxFats->Text != "")||( maskedTextBoxKcal->Text != "")||(maskedTextBoxproductWeight->Text != "")||(textBoxProductName->Text != ""))
+	if((textBoxProtein->Text->Length>0) || (textBoxCarbo->Text->Length > 0)|| (textBoxFats->Text->Length > 0)||(textBoxproductWeight->Text->Length > 0)||(textBoxProductName->Text->Length > 0))
 	{
 		name[listBoxProducts->Items->Count] = textBoxProductName->Text;
-		listBoxProducts->Items->Add(textBoxProductName->Text);
-		protein[listBoxProducts->Items->Count]=Convert::ToDouble( maskedTextBoxProtein -> Text);
-		fats[listBoxProducts->Items->Count] = Convert::ToDouble(maskedTextBoxFats->Text);
-		kcal[listBoxProducts->Items->Count] = Convert::ToDouble(maskedTextBoxKcal->Text);
-		protein[listBoxProducts->Items->Count] = Convert::ToDouble(maskedTextBoxProtein->Text);
-		
+		protein[listBoxProducts->Items->Count]=Convert::ToDouble(textBoxProtein-> Text);
+		fats[listBoxProducts->Items->Count] = Convert::ToDouble(textBoxFats->Text);
+		carbo[listBoxProducts->Items->Count] = Convert::ToDouble(textBoxCarbo->Text);
+		kcal[listBoxProducts->Items->Count] = calcKCAL();
+		labelKcal->Text = Convert::ToString(calcKCAL());
+		listBoxProducts->Items->Add(textBoxProductName->Text+"-"+ Convert::ToString(calcKCAL())+" KCAL");
 	}
 	else
 	{
