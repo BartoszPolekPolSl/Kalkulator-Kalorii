@@ -1,6 +1,7 @@
 #pragma once
 #include "formKCAL.h"
 #include "formBMR.h"
+#include <math.h>
 namespace KalkulatorKalorii {
 
 	using namespace System;
@@ -19,7 +20,7 @@ namespace KalkulatorKalorii {
 	{
 
 	public:
-		
+		double sumProtein{}, sumCarbo{}, sumFats{}, sumKcal{};//zmienne przechowywuj¹ce sumê spo¿ytch makrosk³adników
 		formKCAL(void)
 		{
 			InitializeComponent();
@@ -382,7 +383,7 @@ namespace KalkulatorKalorii {
 			this->labelProtein->Name = L"labelProtein";
 			this->labelProtein->Size = System::Drawing::Size(70, 24);
 			this->labelProtein->TabIndex = 25;
-			this->labelProtein->Text = L"label12";
+			this->labelProtein->Text =Convert::ToString(round( sumProtein)+"/" +round((0.15*formBMR::KCAL)/4));
 			// 
 			// labelCarbo
 			// 
@@ -394,7 +395,7 @@ namespace KalkulatorKalorii {
 			this->labelCarbo->Name = L"labelCarbo";
 			this->labelCarbo->Size = System::Drawing::Size(70, 24);
 			this->labelCarbo->TabIndex = 26;
-			this->labelCarbo->Text = L"label12";
+			this->labelCarbo->Text = Convert::ToString(round(sumCarbo) + "/" + round((0.55 * formBMR::KCAL)/4));
 			// 
 			// labelFats
 			// 
@@ -406,7 +407,7 @@ namespace KalkulatorKalorii {
 			this->labelFats->Name = L"labelFats";
 			this->labelFats->Size = System::Drawing::Size(70, 24);
 			this->labelFats->TabIndex = 27;
-			this->labelFats->Text = L"label12";
+			this->labelFats->Text = Convert::ToString(round(sumFats) + "/" + round((0.3 * formBMR::KCAL)/9));
 			// 
 			// labelAllKcal
 			// 
@@ -418,7 +419,7 @@ namespace KalkulatorKalorii {
 			this->labelAllKcal->Name = L"labelAllKcal";
 			this->labelAllKcal->Size = System::Drawing::Size(70, 24);
 			this->labelAllKcal->TabIndex = 28;
-			this->labelAllKcal->Text =Convert::ToString( formBMR::KCAL);
+			this->labelAllKcal->Text =Convert::ToString(round(sumKcal)+"/"+ round(formBMR::KCAL));
 			// 
 			// formKCAL
 			// 
@@ -466,7 +467,17 @@ namespace KalkulatorKalorii {
 		array< double >^ kcal = gcnew array< double >(1024);
 		array< String^ >^ name = gcnew array< String^ >(1024);
 		
-		
+		void sumMacro()
+		{
+			sumProtein = sumProtein + round(Convert::ToDouble(textBoxProtein->Text));
+			sumCarbo = sumProtein + round(Convert::ToDouble(textBoxCarbo->Text));
+			sumFats = sumProtein + round(Convert::ToDouble(textBoxFats->Text));
+			sumKcal=sumKcal+ round(Convert::ToDouble(labelKcal->Text));
+			labelProtein->Text =Convert::ToString( sumProtein)+"/"+ round((0.15 * formBMR::KCAL) / 4);
+			labelCarbo->Text = Convert::ToString(sumCarbo)+"/"+ round((0.55 * formBMR::KCAL) / 4);
+			labelFats->Text = Convert::ToString(sumFats)+"/"+ round((0.3 * formBMR::KCAL) / 9);
+			labelAllKcal->Text= Convert::ToString(sumKcal) + "/" + round(formBMR::KCAL);
+		}
 		double calcKCAL()
 		{
 			return (4 * Convert::ToDouble(textBoxProtein->Text) + 4 * Convert::ToDouble(textBoxCarbo->Text) + 9 * Convert::ToDouble(textBoxFats->Text))* (Convert::ToDouble(textBoxproductWeight->Text)/100);
@@ -483,6 +494,8 @@ private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^
 		kcal[listBoxProducts->Items->Count] = calcKCAL();
 		labelKcal->Text = Convert::ToString(calcKCAL());
 		listBoxProducts->Items->Add(textBoxProductName->Text+"-"+ Convert::ToString(calcKCAL())+" KCAL");
+		sumMacro();
+		
 	}
 	else
 	{

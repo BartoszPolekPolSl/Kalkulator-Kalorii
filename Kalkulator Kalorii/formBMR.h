@@ -24,7 +24,7 @@ namespace KalkulatorKalorii {
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
 		}
-		static double KCAL;
+		static double KCAL;//zmienna do przenoszenia Kcal pomiedzy formularzami
 	protected:
 		/// <summary>
 		/// Wyczyœæ wszystkie u¿ywane zasoby.
@@ -284,7 +284,7 @@ namespace KalkulatorKalorii {
 			this->buttonTarget->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->buttonTarget->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonTarget->Location = System::Drawing::Point(620, 268);
+			this->buttonTarget->Location = System::Drawing::Point(623, 221);
 			this->buttonTarget->Name = L"buttonTarget";
 			this->buttonTarget->Size = System::Drawing::Size(246, 72);
 			this->buttonTarget->TabIndex = 18;
